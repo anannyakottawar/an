@@ -8,7 +8,7 @@ const userSchema = new bcrypt.Schema({
         type: String,
     }
     ,
-    password5: {
+    contact: {
         type: String,
     }
 });
