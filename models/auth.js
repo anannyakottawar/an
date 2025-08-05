@@ -7,10 +7,7 @@ const userSchema = new bcrypt.Schema({
     password: {
         type: String,
     }
-    ,
-    contact: {
-        type: String,
-    }
+    
 });
 
 module.exports = bcrypt.model("User",userSchema);
