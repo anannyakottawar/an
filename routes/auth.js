@@ -5,7 +5,7 @@ const User = require("../models/User");
 
 // Register route
 router.post("/authregister", async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password,contact } = req.body;
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -13,7 +13,7 @@ router.post("/authregister", async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ email, password: hashedPassword });
+    const newUser = new User({ email, password: hashedPassword,contact });
 
     await newUser.save();
     res.status(201).json({ msg: "User registered successfully" });
@@ -24,14 +24,14 @@ router.post("/authregister", async (req, res) => {
 
 // Login route
 router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password,contact } = req.body;
   try {
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ msg: "User not found" });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.password,contact);
     if (!isMatch) {
       return res.status(400).json({ msg: "Invalid credentials" });
     }
