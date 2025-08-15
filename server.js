@@ -26,6 +26,7 @@ app.use("/api", require("./routes/upload"));
 app.use("/api", require("./routes/auth"));
 app.use("/api", require("./routes/userRoutes"));
 app.use("/api", require("./routes/productRoutes"));
+app.use("/api", require("./routes/profile"));
 
 // Root route
 app.get("/", (req, res) => {
